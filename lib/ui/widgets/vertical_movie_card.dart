@@ -6,11 +6,6 @@ import 'package:where2watchapp/models/movie.dart';
 class VerticalMovieCard extends StatelessWidget {
   final Movie movie;
   const VerticalMovieCard({required this.movie,Key? key }) : super(key: key);
-  // final Movie movie = Movie(0,'title','poster_path','overview',56,[]);
-  // String image;
-  // String title;
-  // num rate;
-  // int id;
 
   @override
   Widget build(BuildContext context) {

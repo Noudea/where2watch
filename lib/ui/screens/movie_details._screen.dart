@@ -35,7 +35,7 @@ class MovieDetailsScreen extends StatelessWidget {
             } else {
               return Column(
                 children: [
-                  state.video == '' ? const Text('no video') : VideoPlayer(video: state.video, image: state.image), 
+                  state.video == '' ? const Text('no video') : VideoPlayer(video: state.video, image: state.image, title: state.title), 
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),

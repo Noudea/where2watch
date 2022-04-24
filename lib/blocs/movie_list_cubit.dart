@@ -20,30 +20,26 @@ class MovieListCubit extends Cubit<MovieList>{
   
   /// init the search_screen
   void initSearchPage(String query) async {
-    movieList.popularMovies = await _movieRep.getPopularMovies();
-    movieList.topRatedMovies = await _movieRep.getTopRatedMovies();
-    movieList.favoriteMovies = await _movieRep.getFavoriteMovies();
-    movieList.searchMovies = await _movieRep.getAllMovies(query);
-    MovieList _movieList = MovieList();
-    _movieList.favoriteMovies = movieList.favoriteMovies;
-    _movieList.popularMovies = movieList.popularMovies;
-    _movieList.topRatedMovies = movieList.topRatedMovies;
-    _movieList.searchMovies = movieList.searchMovies;
-    _movieList.searchMovies = movieList.searchMovies;
-    _movieList.isLoading = false;
+    MovieList _movieList = MovieList(
+      favoriteMovies: await _movieRep.getPopularMovies(),
+      popularMovies: await _movieRep.getTopRatedMovies(),
+      topRatedMovies: await _movieRep.getFavoriteMovies(),
+      searchMovies: await _movieRep.getAllMovies(query),
+      isLoading: false,
+    );
     emit(_movieList);
   }
   
   /// add a movie to the favorite list
   void addToFavorite(Movie movie) async {
     _movieRep.addFavoriteMovie(movie);
-    movieList.favoriteMovies = await _movieRep.getFavoriteMovies();
-    MovieList _movieList = MovieList();
-    _movieList.favoriteMovies = movieList.favoriteMovies;
-    _movieList.popularMovies = movieList.popularMovies;
-    _movieList.topRatedMovies = movieList.topRatedMovies;
-    _movieList.searchMovies = movieList.searchMovies;
-    _movieList.isLoading = false;
+    MovieList _movieList = MovieList(
+      favoriteMovies: await _movieRep.getFavoriteMovies(),
+      popularMovies: movieList.popularMovies,
+      topRatedMovies: movieList.topRatedMovies,
+      searchMovies: movieList.searchMovies,
+      isLoading: false,
+    );
     emit(_movieList);
   }
 

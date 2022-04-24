@@ -12,11 +12,11 @@ import 'package:where2watchapp/ui/screens/search_screen.dart';
 import 'package:where2watchapp/ui/theme/theme_color.dart';
 
 void main() {
+  /// base init
   MovieRequest movieRequest = MovieRequest();
   MovieRepository movieRepository = MovieRepository(movieRequest);
   MovieList movieList = MovieList();
   Movie movie = Movie();
-
 
   runApp(MultiProvider(
     providers: [

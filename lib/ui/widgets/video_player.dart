@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayer extends StatefulWidget {
-  const VideoPlayer({required this.video,required this.image ,Key? key }) : super(key: key);
+  const VideoPlayer({required this.video,required this.image, required this.title,Key? key }) : super(key: key);
   final String video;
   final String image;
+  final String title;
 
   @override
   State<VideoPlayer> createState() => _VideoPlayerState();
@@ -27,12 +28,11 @@ class _VideoPlayerState extends State<VideoPlayer> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
 
     return YoutubePlayer(
+      thumbnail: Text(widget.title),
       controller: _controller,
       liveUIColor: Colors.amber,
     );
