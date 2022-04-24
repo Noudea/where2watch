@@ -1,10 +1,22 @@
 import 'package:where2watchapp/models/movie.dart';
 
+/// Movie list model
 class MovieList {
   List<Movie> popularMovies;
   List<Movie> searchMovies;
   List<Movie> topRatedMovies;
-  bool isLoading = true;
+  List<Movie> favoriteMovies;
+  bool isLoading;
 
-  MovieList(this.popularMovies, this.searchMovies, this.topRatedMovies);
+  //MovieList(this.popularMovies, this.searchMovies, this.topRatedMovies,this.favoriteMovies);
+
+  MovieList({
+    this.popularMovies = const [],
+    this.searchMovies = const [],
+    this.topRatedMovies = const [],
+    this.favoriteMovies = const [],
+    this.isLoading = true,
+  });
+
+
 }

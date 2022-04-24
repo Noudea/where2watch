@@ -13,7 +13,7 @@ class HorizontalMovieList extends StatelessWidget {
       child : ListView.builder(
         itemBuilder: (context,index) {
           final Movie movie = movieList[index];
-          return VerticalMovieCard(image: movie.image, title: movie.title, rate: movie.rate, id: movie.id);
+          return VerticalMovieCard(movie : movie);
         },
         itemCount: movieList.length,
         scrollDirection: Axis.horizontal

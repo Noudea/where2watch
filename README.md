@@ -1,16 +1,46 @@
-# where2watchapp
+# Where2WatchApp
 
-A new Flutter project.
+## specification
 
-## Getting Started
+### Versions
+- Flutter: 2.10.5
+- Dart: 2.16.2
 
-This project is a starting point for a Flutter application.
+### Functionalities
+  - View popular movies
+  - View top rated movies
+  - View movie details(title, description, poster, length, rate, actors, where to watch)
+  - Search for movies
+  - View where to watch movies
+  - Save movies to favorites
+  - View movie trailer
 
-A few resources to get you started if this is your first Flutter project:
+### API
+  - themoviedb.org api : https://www.themoviedb.org/
+  - nothing to configure, everything is in the code, using my apikey
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Screens
+- Home
+  - List of populars movies
+    - on tap open view with the movie details
+  - List of top rated movies
+    - on tap open view with the movie details
+  - List of favorite movies
+    - on tap open view with the movie details
+  - Search Input to search movies
+    - on tap open view with the search results
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Search
+  - List of movies from the query
+    - on tap open view with the movie details
+
+- Movie details
+  - Movie title
+  - Movie description
+  - Movie poster
+  - Movie length
+  - Movie rate
+  - Movie actors
+  - Movie trailer
+  - Movie where to watch
+  - Add movie to favorite >>>> shared preferences

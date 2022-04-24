@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:where2watchapp/blocs/movie_cubit.dart';
+import 'package:where2watchapp/blocs/movie_details_cubit.dart';
 import 'package:where2watchapp/blocs/movie_list_cubit.dart';
+import 'package:where2watchapp/models/movie.dart';
 import 'package:where2watchapp/models/movie_list.dart';
 import 'package:where2watchapp/services/api/movie_request.dart';
-import 'package:where2watchapp/services/media/movie_repository.dart';
+import 'package:where2watchapp/services/repository/movie_repository.dart';
 import 'package:where2watchapp/ui/screens/home_screen.dart';
+import 'package:where2watchapp/ui/screens/movie_details._screen.dart';
+import 'package:where2watchapp/ui/screens/search_screen.dart';
 import 'package:where2watchapp/ui/theme/theme_color.dart';
 
 void main() {
   MovieRequest movieRequest = MovieRequest();
   MovieRepository movieRepository = MovieRepository(movieRequest);
-  MovieList movieList = MovieList([], [], []);
+  MovieList movieList = MovieList();
+  Movie movie = Movie();
 
 
   runApp(MultiProvider(
     providers: [
       Provider<ThemeColor>(create: (_) => ThemeColor()),
-      Provider<MovieCubit>(create: (_) => MovieCubit(movieRepository)),
       Provider<MovieListCubit>(create: (_) => MovieListCubit(movieRepository,movieList)),
+      Provider<MovieDetailsCubit>(create: (_) => MovieDetailsCubit(movieRepository,movie)),
     ],
     child: const MyApp(),
   ));
@@ -33,19 +37,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        textTheme: TextTheme(
+          headline1: const TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline2: TextStyle(
+            fontSize: 32.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'NetflixSans',
+            color: context.read<ThemeColor>().accent
+          ),
+          headline3: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            fontFamily: 'NetflixSans',
+            color: context.read<ThemeColor>().text
+          ),
+          headline4: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            fontFamily: 'NetflixSans',
+            color: context.read<ThemeColor>().text
+          ),
+          bodyText1: TextStyle(
+            fontSize: 16,
+            fontFamily: 'NetflixSans',
+            color: context.read<ThemeColor>().text
+          ),
+          bodyText2: TextStyle(
+            fontSize: 12,
+            fontFamily: 'NetflixSans',
+            color: context.read<ThemeColor>().text
+          )
+        ),
       ),
       routes: {
         '/home': (context) => Home(),
+        '/movie_details': (context) => const MovieDetailsScreen(),
+        '/search_movies': (context) => const SearchScreenn(),
       },
       initialRoute: '/home',
     );
